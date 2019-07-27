@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import progressbar
 
-from sklearn.datasets import fetch_mldata
+from sklearn.datasets import fetch_openml
 
 from mlfromscratch.deep_learning.optimizers import Adam
 from mlfromscratch.deep_learning.loss_functions import CrossEntropy
@@ -16,7 +16,6 @@ from mlfromscratch.deep_learning import NeuralNetwork
 class GAN():
     """A Generative Adversarial Network with deep fully-connected neural nets as
     Generator and Discriminator.
-
     Training Data: MNIST Handwritten Digits (28x28 images)
     """
     def __init__(self):
@@ -78,7 +77,7 @@ class GAN():
 
     def train(self, n_epochs, batch_size=128, save_interval=50):
 
-        mnist = fetch_mldata('MNIST original')
+        mnist = fetch_openml('mnist_784')
 
         X = mnist.data
         y = mnist.target
@@ -164,5 +163,4 @@ class GAN():
 if __name__ == '__main__':
     gan = GAN()
     gan.train(n_epochs=200000, batch_size=64, save_interval=400)
-
 
